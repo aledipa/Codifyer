@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:alert/alert.dart'; // Alert(message: 'Test').show();
+import 'package:flutter_codify/infos/manual.dart';
+import 'package:flutter_codify/infos/error.dart';
 import 'package:flutter_codify/pages/encoder.dart';
 import 'package:flutter_codify/pages/formatter.dart';
-import 'dart:developer';
+import 'package:flutter/services.dart';
+
 
 
 void main() {
@@ -11,6 +13,24 @@ void main() {
 
 class Codify extends StatelessWidget {
   const Codify({Key? key}) : super(key: key);
+
+  static void showManualPage(String page, context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ManualPage(inputPage: page)),
+    );
+  }
+
+  static void showErrorPage(String page, String error, context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ErrorPage(inputPage: page, inputError: error)),
+    );
+  }
+
+  static void copyToClipboard(String link) {
+    Clipboard.setData(ClipboardData(text: link));
+  }
 
   @override 
   Widget build(BuildContext context) {
@@ -60,7 +80,14 @@ class HomePage extends StatelessWidget {
               children: <Widget> [
                 const Padding(padding: EdgeInsets.only(top: 95)),
                 TextButton(
-                  onPressed: () {showEncodePage(true); log("Encrypt");},
+                  onPressed: () {
+                    try {
+                      showEncodePage(true);
+                    } catch(e) {
+                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                    }
+                    // log("Encrypt");
+                  },
                   child: const Text(
                     "< Encrypt >",
                     style: TextStyle(
@@ -74,7 +101,14 @@ class HomePage extends StatelessWidget {
                   width: 15,
                 ),
                 TextButton(
-                  onPressed: () {showFormatPage(false); log("Decrypt");},
+                  onPressed: () {
+                    try {
+                      showFormatPage(false); 
+                    } catch(e) {
+                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                    }
+                  },
+                    // log("Decrypt");},
                   child: const Text(
                     "< Decrypt >",
                     style: TextStyle(
@@ -88,7 +122,13 @@ class HomePage extends StatelessWidget {
                   width: 15,
                 ),
                 TextButton(
-                  onPressed: () {}, //Alert(message: 'I Forgor💀').show(); log("Help");
+                  onPressed: () {
+                    try {
+                      Codify.showManualPage("Home", context);
+                    } catch(e) {
+                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                    }
+                  }, //showManualPage("home"), //Alert(message: 'I Forgor💀').show(); log("Help");
                   child: const Text(
                     "< ? Help >",
                     style: TextStyle(
@@ -110,8 +150,9 @@ class HomePage extends StatelessWidget {
 class PageContainer extends StatelessWidget {
   final String labelText;
   final Container container;
+  Color borderColor;
 
-  PageContainer({required this.labelText, required this.container});
+  PageContainer({Key? key, required this.labelText, required this.container, this.borderColor = const Color(0xFF00FF00)}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -122,7 +163,7 @@ class PageContainer extends StatelessWidget {
             width: 290, 
             height: 495, 
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFF00FF00)),
+              border: Border.all(color: borderColor), //const Color(0xFF00FF00)
               borderRadius: const BorderRadius.all(Radius.circular(15)),
           ),
           ),
@@ -133,8 +174,8 @@ class PageContainer extends StatelessWidget {
             width: 290,
             child: Text(
               labelText, 
-              style: const TextStyle(
-                color: Color(0xFF00FF00),
+              style: TextStyle(
+                color: borderColor,
                 backgroundColor: Color(0xFF303030),
                 fontSize: 35,
               ), 

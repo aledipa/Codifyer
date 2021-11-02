@@ -1,20 +1,8 @@
-// import 'package:encrypt/encrypt_io.dart';
-// import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-// import 'package:alert/alert.dart';
 import 'package:flutter/rendering.dart';
-// import 'package:flutter/services.dart';
 import 'package:flutter_codify/main.dart';
 import 'package:flutter_codify/pages/exporter.dart';
-// import 'dart:io';
-// import 'package:pointycastle/asymmetric/api.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
-// import 'package:crypto/crypto.dart';
-// import 'dart:convert' as ConvertPack;
-// import 'package:cryptography/cryptography.dart' as CryptographyPack;
-//Encoding imports
-
 
   
 class EncryptPage extends StatefulWidget {
@@ -67,7 +55,7 @@ class EncryptPageState extends State<EncryptPage> {
     // final key = encrypt.Key.fromUtf8(')H@McQfTjWnZr4t7w!z%C*F-JaNdRgUk'); //
 
     final iv = encrypt.IV.fromLength(16);
-    print(iv.base64);
+    // print(iv.base64);
 
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encMode));
 
@@ -116,8 +104,8 @@ class EncryptPageState extends State<EncryptPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: const Text(
-          "Encryption Page",
+        title: Text(
+          "${mainButtonText}ion Page",
         ),
 
       ),
@@ -147,15 +135,20 @@ class EncryptPageState extends State<EncryptPage> {
                             ],
                             isSelected: _isSelected,
                             onPressed: (int index) {
-                              setState(() {
-                                for (int i = 0; i < _isSelected.length; i++) {
-                                  if (i == index) {
-                                    _isSelected[i] = true;
-                                  } else {
-                                    _isSelected[i] = false;
+                              try {
+                                setState(() {
+                                  for (int i = 0; i < _isSelected.length; i++) {
+                                    if (i == index) {
+                                      _isSelected[i] = true;
+                                    } else {
+                                      _isSelected[i] = false;
+                                    }
                                   }
-                                }
-                              });
+                                });
+                              } catch(e) {
+                                Codify.showErrorPage("Encrypt", "${e.runtimeType.toString()} Error", context);
+                              }
+                              
                             },
                             // region example 1
                             color: const Color(0xFFF5FFFF),
@@ -201,7 +194,15 @@ class EncryptPageState extends State<EncryptPage> {
                     width: 15,
                   ),
                   TextButton(
-                    onPressed: () {print("Encrypt"); print(_controller.text); showExportPage();},
+                    onPressed: () {
+                      // print("Encrypt"); 
+                      // print(_controller.text); 
+                      try {
+                        showExportPage();
+                      } catch(e) {
+                        Codify.showErrorPage("Encrypt", "${e.runtimeType.toString()} Error", context);
+                      }
+                    },
                     child: Text(
                       "< $mainButtonText >",
                       style: const TextStyle(
@@ -211,7 +212,13 @@ class EncryptPageState extends State<EncryptPage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {}, //Alert(message: 'I Forgor💀').show(); print("Help");
+                    onPressed: () {
+                      try {
+                        Codify.showManualPage("Encrypt", context);
+                      } catch(e) {
+                        Codify.showErrorPage("Encrypt", "${e.runtimeType.toString()} Error", context);
+                      }
+                    }, //Alert(message: 'I Forgor💀').show(); print("Help");
                     child: const Text(
                       "< ? Help >",
                       style: TextStyle(
