@@ -41,6 +41,7 @@ class Codify extends StatelessWidget {
         fontFamily: 'Hermit'
       ),
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

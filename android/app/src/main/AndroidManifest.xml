@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_codify">
    <application
-        android:label="flutter_codify"
+        android:label="Codifyer"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
