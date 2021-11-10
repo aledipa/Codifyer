@@ -18,7 +18,7 @@ class ManualPage extends StatelessWidget {
         case "Format":
           return "In the Format page you can choose the encryption/decription format or algorithm that you want to use";
         case "Encrypt":
-          return "In the Encrypt/Decrypt page you can define the parameters needed to complete the encription or decription of the selected format ";
+          return "In the Encrypt/Decrypt page you can define the parameters needed to complete the encription or decription of the selected format. \n[!] The AES-256 encryption's key/password must be 16 or 32 chars long";
         case "Export":
           return "In the Export page you can read the encoded or decoded text and copy it on the clipboard by clicking on “Save”";
         default:

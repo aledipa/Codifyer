@@ -4,6 +4,7 @@ import 'package:flutter_codify/infos/error.dart';
 import 'package:flutter_codify/pages/encoder.dart';
 import 'package:flutter_codify/pages/formatter.dart';
 import 'package:flutter/services.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 
 
@@ -34,6 +35,10 @@ class Codify extends StatelessWidget {
 
   @override 
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: "Codifyer",
       theme: ThemeData(

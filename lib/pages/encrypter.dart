@@ -55,7 +55,6 @@ class EncryptPageState extends State<EncryptPage> {
     // final key = encrypt.Key.fromUtf8(')H@McQfTjWnZr4t7w!z%C*F-JaNdRgUk'); //
 
     final iv = encrypt.IV.fromLength(16);
-    // print(iv.base64);
 
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encMode));
 

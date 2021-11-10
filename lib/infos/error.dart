@@ -19,7 +19,7 @@ class ErrorPage extends StatelessWidget {
         case "Format":
           return "The selected algorithm needs a different input format. \nTry removing uncommon chars or following the right input format. \n\nMore details\n---\n$inputError";
         case "Encrypt":
-          return "The selected algorithm needs a different input format or the given parameters are incorrect or incomplete. \nTry checking the input or changing the encryption/decryption details. \n\nMore details\n---\n$inputError";
+          return "The selected algorithm needs a different input format or the given parameters are incorrect or incomplete. \nTry checking the input or changing the encryption/decryption details. \nIf using AES-256, make sure you're using a 16 or 32 chars long key/password \n\nMore details\n---\n$inputError";
         case "Export":
           return "The output format is not supported or the encryption/decryption process went wrong. \nTry checking the input format. \n\nMore details\n---\n$inputError";
         default:

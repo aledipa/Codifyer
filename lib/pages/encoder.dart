@@ -17,10 +17,10 @@ class EncodePage extends StatelessWidget {
   String subTitleText = "Plain-Text";
   EncodePage({Key? key, required this.isEncode, this.isAES, this.decodeType}) : super(key: key);
 
-  //========== <SPERIMENTAL> ==========
 
   decHex(String text) {
-    return utf8.decode(HEX.decode(text));
+    return String.fromCharCodes((HEX.decode(text)));
+    // return utf8.decode((HEX.decode(text))); //OLD VERSION, It doesn't support accents
   }
 
   decBase64(String text) {
@@ -55,8 +55,6 @@ class EncodePage extends StatelessWidget {
       }
     }
   }
-
-    //========== </SPERIMENTAL> ==========
 
   @override 
   Widget build(BuildContext context) {

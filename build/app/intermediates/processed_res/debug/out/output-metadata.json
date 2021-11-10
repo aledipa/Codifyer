@@ -4,7 +4,7 @@
     "type": "PROCESSED_RES",
     "kind": "Directory"
   },
-  "applicationId": "com.example.flutter_codify",
+  "applicationId": "com.dipasquale_alessandro.flutter_codify",
   "variantName": "processDebugResources",
   "elements": [
     {
