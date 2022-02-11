@@ -3,6 +3,7 @@
 Codifyer is a minimal but powerful encryption and decryption tool, useful for encrypting, encoding and hashing. It is totally free of charge.
 
 ## Preview
+A little app preview
 ![c1](readme_src/c1.webp)
 ![c2](readme_src/c2.webp)
 ![c3](readme_src/c3.webp)
