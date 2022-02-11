@@ -4,7 +4,7 @@ import 'package:flutter_codify/main.dart';
 
 class ExportPage extends StatelessWidget {
   final String inputText;
-  ExportPage({required this.inputText});
+  const ExportPage({Key? key, required this.inputText}) : super(key: key);
 
   @override 
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ExportPage extends StatelessWidget {
                           child: Text(
                             inputText,
                             style: const TextStyle(
-                              color: Color(0xFFFFBB55),
+                              color: Color(0xFFFFBB55), //lightorange
                             ),
                           ),
                         ),
@@ -65,7 +65,7 @@ class ExportPage extends StatelessWidget {
                       "< Save >",
                       style: TextStyle(
                         fontSize: 25,
-                        color: Color(0xFF6AD2FF),
+                        color: Color(0xFF6AD2FF), //lightblue
                       ),
                     ),
                   ),
@@ -82,7 +82,7 @@ class ExportPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontStyle: FontStyle.italic,
-                        color: Color(0xFFFFFF33),
+                        color: Color(0xFFFFFF33), //yellow
                       ),
                     ),
                   ),

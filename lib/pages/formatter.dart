@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_codify/main.dart'; // Main import
 //Following pages import
 import 'package:flutter_codify/pages/encrypter.dart';
@@ -14,7 +13,7 @@ import 'package:hex/hex.dart';
 class FormatPage extends StatefulWidget {
   final bool isEncode;
   String? plainText = "";
-  FormatPage({required this.isEncode, this.plainText});
+  FormatPage({Key? key, required this.isEncode, this.plainText}) : super(key: key);
   List<Widget> wList = [];
 
 
@@ -48,11 +47,11 @@ class FormatPageState extends State<FormatPage> {
       return md5.convert(utf8.encode(text));
     }
 
-    String encBin(String text) { //Iterable<String>?
+    String encBin(String text) {
       Iterable<String> binary = text.codeUnits.map((int strInt) => strInt.toRadixString(2));
       String binaryText = "";
 
-      binary.forEach((element) {binaryText += element.toString() + " ";});
+      for (var element in binary) {binaryText += element.toString() + " ";}
       return binaryText;
     }
 
@@ -188,8 +187,6 @@ class FormatPageState extends State<FormatPage> {
                                 try {
                                   setState(() {
                                     selectedType = _encodingType[index];
-                                    // print(_isSelected);
-                                    // print(_encodingType[index]);
                                     for (int i = 0; i < _isSelected.length; i++) {
                                       if (i == index) {
                                         _isSelected[i] = true;
@@ -203,12 +200,11 @@ class FormatPageState extends State<FormatPage> {
                                 }
                                 
                               },
-                              // region example 1
+                              // Region 1
                               color: const Color(0xFFF5FFFF),
                               selectedColor: const Color(0xFFFFBB55),
                               fillColor: const Color(0xFF848484),
                               renderBorder: false,
-                              // endregion
                             ),
                           ],
                         ),
@@ -243,7 +239,7 @@ class FormatPageState extends State<FormatPage> {
                     style: TextStyle(
                       fontSize: 15,
                       fontStyle: FontStyle.italic,
-                      color: Color(0xFFFFFF33),
+                      color: Color(0xFFFFFF33), //yellow
                     ),
                   ),
                 ),

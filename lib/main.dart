@@ -4,9 +4,7 @@ import 'package:flutter_codify/infos/error.dart';
 import 'package:flutter_codify/pages/encoder.dart';
 import 'package:flutter_codify/pages/formatter.dart';
 import 'package:flutter/services.dart';
-// import 'package:google_mobile_ads/google_mobile_ads.dart';
-
-
+// import 'package:google_mobile_ads/google_mobile_ads.dart';   //Currently without ADS :)
 
 void main() {
   runApp(const Codify());
@@ -25,7 +23,8 @@ class Codify extends StatelessWidget {
   static void showErrorPage(String page, String error, context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ErrorPage(inputPage: page, inputError: error)),
+      MaterialPageRoute(
+          builder: (context) => ErrorPage(inputPage: page, inputError: error)),
     );
   }
 
@@ -33,7 +32,7 @@ class Codify extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: link));
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -41,10 +40,7 @@ class Codify extends StatelessWidget {
     ]);
     return MaterialApp(
       title: "Codifyer",
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: 'Hermit'
-      ),
+      theme: ThemeData(brightness: Brightness.dark, fontFamily: 'Hermit'),
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -54,19 +50,19 @@ class Codify extends StatelessWidget {
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     void showEncodePage(bool action) {
-      Navigator.push(//pash
-        context, 
-        MaterialPageRoute(builder: (context) => EncodePage(isEncode: action)), //context = self o this
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => EncodePage(isEncode: action)),
       );
     }
 
     void showFormatPage(bool action) {
-      Navigator.push(//pash
-        context, 
-        MaterialPageRoute(builder: (context) => FormatPage(isEncode: action)), //context = self o this
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FormatPage(isEncode: action)),
       );
     }
 
@@ -78,21 +74,22 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: PageContainer(
-          labelText: "Menu", 
+          labelText: "Menu",
           container: Container(
-            width: 290, 
+            width: 290,
             height: 510,
             child: Column(
-              children: <Widget> [
+              children: <Widget>[
                 const Padding(padding: EdgeInsets.only(top: 95)),
+                // Button to open the encoding page
                 TextButton(
                   onPressed: () {
                     try {
                       showEncodePage(true);
-                    } catch(e) {
-                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                    } catch (e) {
+                      Codify.showErrorPage(
+                          "Home", "${e.runtimeType.toString()} Error", context);
                     }
-                    // log("Encrypt");
                   },
                   child: const Text(
                     "< Encrypt >",
@@ -102,19 +99,21 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                // White space
                 const SizedBox(
                   height: 25,
                   width: 15,
                 ),
+                // Button to open the format selection page
                 TextButton(
                   onPressed: () {
                     try {
-                      showFormatPage(false); 
-                    } catch(e) {
-                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                      showFormatPage(false);
+                    } catch (e) {
+                      Codify.showErrorPage(
+                          "Home", "${e.runtimeType.toString()} Error", context);
                     }
                   },
-                    // log("Decrypt");},
                   child: const Text(
                     "< Decrypt >",
                     style: TextStyle(
@@ -127,14 +126,16 @@ class HomePage extends StatelessWidget {
                   height: 165,
                   width: 15,
                 ),
+                // Button to get help about this page
                 TextButton(
                   onPressed: () {
                     try {
                       Codify.showManualPage("Home", context);
-                    } catch(e) {
-                      Codify.showErrorPage("Home", "${e.runtimeType.toString()} Error", context);
+                    } catch (e) {
+                      Codify.showErrorPage(
+                          "Home", "${e.runtimeType.toString()} Error", context);
                     }
-                  }, //showManualPage("home"), //Alert(message: 'I Forgor💀').show(); log("Help");
+                  }, //Alert(message: 'I Forgor💀').show(); log("Help");
                   child: const Text(
                     "< ? Help >",
                     style: TextStyle(
@@ -153,12 +154,18 @@ class HomePage extends StatelessWidget {
   }
 }
 
+// Green large widget box
 class PageContainer extends StatelessWidget {
   final String labelText;
   final Container container;
   Color borderColor;
 
-  PageContainer({Key? key, required this.labelText, required this.container, this.borderColor = const Color(0xFF00FF00)}) : super(key: key);
+  PageContainer(
+      {Key? key,
+      required this.labelText,
+      required this.container,
+      this.borderColor = const Color(0xFF00FF00)})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -166,12 +173,12 @@ class PageContainer extends StatelessWidget {
         Positioned(
           bottom: 0,
           child: Container(
-            width: 290, 
-            height: 495, 
+            width: 290,
+            height: 495,
             decoration: BoxDecoration(
-              border: Border.all(color: borderColor), //const Color(0xFF00FF00)
+              border: Border.all(color: borderColor),
               borderRadius: const BorderRadius.all(Radius.circular(15)),
-          ),
+            ),
           ),
         ),
         Positioned(
@@ -179,12 +186,12 @@ class PageContainer extends StatelessWidget {
           child: SizedBox(
             width: 290,
             child: Text(
-              labelText, 
+              labelText,
               style: TextStyle(
                 color: borderColor,
-                backgroundColor: Color(0xFF303030),
+                backgroundColor: const Color(0xFF303030),
                 fontSize: 35,
-              ), 
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -195,13 +202,16 @@ class PageContainer extends StatelessWidget {
   }
 }
 
+// Multicolor smaller sub-widget box
 class SubContainer extends StatelessWidget {
   final String labelText;
   final Container container;
   final double width = 235; //290-235 = 55/2 = 27.5
   double? height; //230
 
-  SubContainer({Key? key, required this.labelText, required this.container, this.height}) : super(key: key);
+  SubContainer(
+      {Key? key, required this.labelText, required this.container, this.height})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     height ??= 230;
@@ -211,8 +221,8 @@ class SubContainer extends StatelessWidget {
         Positioned(
           bottom: 0,
           child: Container(
-            width: width, 
-            height: height, 
+            width: width,
+            height: height,
             decoration: BoxDecoration(
               border: Border.all(color: const Color(0xFFF5FFFF)),
               borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -220,16 +230,16 @@ class SubContainer extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: height!-20,
+          bottom: height! - 20,
           child: SizedBox(
             width: width,
             child: Text(
-              labelText, 
+              labelText,
               style: const TextStyle(
                 color: Color(0xFFF5FFFF),
                 backgroundColor: Color(0xFF303030),
                 fontSize: 25,
-              ), 
+              ),
               textAlign: TextAlign.center,
             ),
           ),

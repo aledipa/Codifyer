@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_codify/main.dart';
 import 'package:flutter_codify/pages/exporter.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
@@ -51,8 +50,7 @@ class EncryptPageState extends State<EncryptPage> {
       const encMode = encrypt.AESMode.ecb;
     }
 
-    final key = encrypt.Key.fromUtf8(secretKey); //)H@McQfTjWnZr4t7w!z%C*F-JaNdRgUk
-    // final key = encrypt.Key.fromUtf8(')H@McQfTjWnZr4t7w!z%C*F-JaNdRgUk'); //
+    final key = encrypt.Key.fromUtf8(secretKey);
 
     final iv = encrypt.IV.fromLength(16);
 
@@ -60,20 +58,6 @@ class EncryptPageState extends State<EncryptPage> {
 
     return encrypter.decrypt(encrypt.Encrypted.fromBase64(text), iv: iv);
   }
-
-  // Future<String?> encRSA(String text, String secret_key) async {
-  //   final publicKey = await parseKeyFromFile<RSAPublicKey>('test/public.pem');
-  //   final privKey = await parseKeyFromFile<RSAPrivateKey>('test/private.pem');
-
-  //   final encrypter = encrypt.Encrypter(encrypt.RSA(publicKey: publicKey, privateKey: privKey));
-
-  //   final encrypted = encrypter.encrypt(text);
-  //   final decrypted = encrypter.decrypt(encrypted);
-
-  //   // print(decrypted); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  //   // print(encrypted.base64); // kO9EbgbrSwiq0EYz0aBdljHSC/rci2854Qa+nugbhKjidlezNplsEqOxR+pr1RtICZGAtv0YGevJBaRaHS17eHuj7GXo1CM3PR6pjGxrorcwR5Q7/bVEePESsimMbhHWF+AkDIX4v0CwKx9lgaTBgC8/yJKiLmQkyDCj64J3JSE=
-  //   return encrypted.base64;
-  // }
 
   @override 
   Widget build(BuildContext context) {
@@ -149,12 +133,11 @@ class EncryptPageState extends State<EncryptPage> {
                               }
                               
                             },
-                            // region example 1
+                            // Region 1
                             color: const Color(0xFFF5FFFF),
                             selectedColor: const Color(0xFFFFBB55),
                             fillColor: const Color(0xFF848484),
                             renderBorder: false,
-                            // endregion
                           ),
                       ),
                     ),
@@ -178,10 +161,9 @@ class EncryptPageState extends State<EncryptPage> {
                           expands: true,
                           controller: _controller,
                           decoration: const InputDecoration(
-                            // fillColor: Color(0xFFFFBB55),
                             prefixText: "# ",
                             hintText: "Text here...",
-                            contentPadding: EdgeInsets.only(left: 15, right: 15, bottom: 20, top: 45), //.all(15)
+                            contentPadding: EdgeInsets.only(left: 15, right: 15, bottom: 20, top: 45),
                             border: InputBorder.none,
                           ),
                           style: const TextStyle(color: Color(0xFFe3eaea)),
@@ -194,8 +176,6 @@ class EncryptPageState extends State<EncryptPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // print("Encrypt"); 
-                      // print(_controller.text); 
                       try {
                         showExportPage();
                       } catch(e) {

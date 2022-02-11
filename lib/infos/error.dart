@@ -10,6 +10,7 @@ class ErrorPage extends StatelessWidget {
 
   @override 
   Widget build(BuildContext context) {
+    // Errors
     String getErrorText(String inputPage) {
       switch(inputPage) {
         case "Home":
@@ -42,7 +43,7 @@ class ErrorPage extends StatelessWidget {
           },
           child: PageContainer(
             labelText: "Error", 
-            borderColor: const Color(0xFFFF0000),
+            borderColor: const Color(0xFFFF0000), //red
             container: Container(
               width: 290, 
               height: 510,
@@ -62,7 +63,7 @@ class ErrorPage extends StatelessWidget {
                           child: Text(
                             getErrorText(inputPage),
                             style: const TextStyle(
-                              color: Color(0xFFFFBB55),
+                              color: Color(0xFFFFBB55), //lightorange
                             ),
                           ),
                         ),
@@ -73,6 +74,7 @@ class ErrorPage extends StatelessWidget {
                     height: 25,
                     width: 15,
                   ),
+                  //Closes the current page and shows the previous one
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -85,6 +87,7 @@ class ErrorPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // Copies to the clipboard the error message
                   TextButton(
                       onPressed: () {Codify.copyToClipboard(getErrorText(inputPage));}, //Alert(message: 'I Forgor💀').show(); print("Help");
                       child: const Text(

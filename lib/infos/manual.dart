@@ -9,6 +9,7 @@ class ManualPage extends StatelessWidget {
 
   @override 
   Widget build(BuildContext context) {
+    // Manuals
     String getInfoText(String inputPage) {
       switch(inputPage) {
         case "Home":
@@ -61,7 +62,7 @@ class ManualPage extends StatelessWidget {
                           child: Text(
                             getInfoText(inputPage),
                             style: const TextStyle(
-                              color: Color(0xFFFFBB55),
+                              color: Color(0xFFFFBB55), //lightorange
                             ),
                           ),
                         ),
@@ -72,13 +73,14 @@ class ManualPage extends StatelessWidget {
                     height: 25,
                     width: 15,
                   ),
+                  //Closes the current page and shows the previous one
                   TextButton(
                     onPressed: () {Navigator.pop(context);},
                     child: const Text(
                       "< OK >",
                       style: TextStyle(
                         fontSize: 25,
-                        color: Color(0xFF6AD2FF),
+                        color: Color(0xFF6AD2FF), //lightblue
                       ),
                     ),
                   ),
