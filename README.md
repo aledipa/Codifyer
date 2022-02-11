@@ -1,10 +1,12 @@
 # Codifyer
 
 Codifyer is a minimal but powerful encryption and decryption tool, useful for encrypting, encoding and hashing. It is totally free of charge.
+Powered by Flutter.
 
 ## Preview
 A little app preview
 <br>
+
 <img src="readme_src/c1.webp" alt="c1" width="19%"/>
 <img src="readme_src/c2.webp" alt="c2" width="19%"/>
 <img src="readme_src/c3.webp" alt="c3" width="19%"/>
